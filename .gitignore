@@ -141,4 +141,4 @@ $RECYCLE.BIN/
 
 # Jupyter Notebooks
 .ipynb_checkpoints/
-/Payments
+Payments/
