@@ -78,6 +78,7 @@ btn_search.grid(row=1, column=1, sticky='ew', padx=5, pady=5)  # Defining the se
 search_input = tk.Entry(frame)
 search_input.grid(row=1, column=0, sticky='ew', padx=5, pady=5)  # Defining the entry field layout inside the frame
 search_input.bind('<FocusIn>', clear_error_message)  # Binding the focus in event to clear error message
+search_input.bind('<Return>', lambda event: search())
 
 # Creating labels to display weather information (temperature, humidity, wind speed, pressure, precipitation)
 temp_lable = tk.Label(frame, text='Temperature: 0', font=(font_family, font_size))
