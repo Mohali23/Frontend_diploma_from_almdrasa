@@ -2,7 +2,7 @@ import requests  # Importing the requests library to handle HTTP requests
 import tkinter as tk  # Importing the tkinter library for creating the graphical user interface
 
 # Function to perform weather data search
-def search(e=None):
+def search():
     # Getting the user-input location
     location = search_input.get()
     
@@ -33,9 +33,13 @@ def search(e=None):
             # Displaying an error message for incorrect location and resetting weather labels to default values
             error_message.config(text='Please enter the correct location')
             reset()
+
+
+
+
             
 # Function to clear error messages
-def clear_error_message(e=None):
+def clear_error_message():
     error_message.config(text='')
 
 # Function to reset text labels to default values
