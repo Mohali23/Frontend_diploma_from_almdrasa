@@ -4,43 +4,41 @@ import random  # For random player selection
 
 # Function to handle the next player's turn
 def next_player(row, col):
-    global player, game_finished  # Global variables
-
-    # Check if the game is finished, if so, return
-    if game_finished:
-        return
-
-    # Check if the selected grid button is empty and there is no winner yet
+    global player
     if grid_btns[row][col]['text'] == "" and check_winner() == False:
-        if player == players[0]:  # Player X's turn
-            grid_btns[row][col]['text'] = player  # Set button text to current player
+        # Human player's turn
+        grid_btns[row][col]['text'] = "x"
 
-            # Check if there's a winner, update message accordingly
+        if check_winner() == False:
+            message_label.config(text=(players[1] + " turn"))  # Assuming 'o' is the computer
+
+            # Computer's turn after human player
+            root.after(1000, computer_turn)
+
+        elif check_winner() == True:
+            message_label.config(text=(players[0] + " wins!"))
+            update_score(players[0])
+
+        elif check_winner() == 'tie':
+            message_label.config(text=("Tie, No Winner!"))
+
+
+def computer_turn():
+    if check_winner() == False:
+        empty_cells = [(row, col) for row in range(3) for col in range(3) if grid_btns[row][col]['text'] == ""]
+        if empty_cells:
+            row, col = random.choice(empty_cells)
+            grid_btns[row][col]['text'] = players[1]  # Assuming 'o' represents the computer's move
+
             if check_winner() == False:
-                player = players[1]  # Switch to Player O's turn
-                message_label.config(text=(players[1] + " turn"))
-
-            elif check_winner() == True:
-                message_label.config(text=(players[0] + " wins!"))  # Player X wins
-                update_score(players[0])  # Update score for Player X
-
-            elif check_winner() == 'tie':
-                message_label.config(text=("Tie, No Winner!"))  # Game ends in a tie
-
-        elif player == players[1]:  # Player O's turn
-            grid_btns[row][col]['text'] = player  # Set button text to current player
-
-            # Check if there's a winner, update message accordingly
-            if check_winner() == False:
-                player = players[0]  # Switch to Player X's turn
                 message_label.config(text=(players[0] + " turn"))
 
             elif check_winner() == True:
-                message_label.config(text=(players[1] + " wins!"))  # Player O wins
-                update_score(players[1])  # Update score for Player O
+                message_label.config(text=(players[1] + " wins!"))
+                update_score(players[1])
 
             elif check_winner() == 'tie':
-                message_label.config(text=("Tie, No Winner!"))  # Game ends in a tie
+                message_label.config(text=("Tie, No Winner!"))
 
 
 # Function to check if there's a winner
@@ -168,14 +166,14 @@ score_frame.columnconfigure(1, weight=1)
 player_X_score_label = tk.Label(score_frame, text='0', font=(font_family, font_size))
 player_X_score_label.grid(row=0, column=0, sticky='nesw')
 
-playerX_name_label = tk.Label(score_frame, text='(X) Score', font=(font_family, 15))
+playerX_name_label = tk.Label(score_frame, text='(X) Mohali Score', font=(font_family, 15))
 playerX_name_label.grid(row=1, column=0, sticky='nesw')
 
 # Labels for Player O's score and name
 player_O_score_label = tk.Label(score_frame, text='0', font=(font_family, font_size))
 player_O_score_label.grid(row=0, column=1, sticky='nesw')
 
-playerO_name_label = tk.Label(score_frame, text='(O) Score', font=(font_family, 15))
+playerO_name_label = tk.Label(score_frame, text='(O) Almdrasa Score', font=(font_family, 15))
 playerO_name_label.grid(row=1, column=1, sticky='nesw')
 
 # Label to display game messages
