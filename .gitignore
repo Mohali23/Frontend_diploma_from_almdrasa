@@ -143,3 +143,6 @@ $RECYCLE.BIN/
 # Jupyter Notebooks
 .ipynb_checkpoints/
 
+# Folders not necessary
+Videos/
+
