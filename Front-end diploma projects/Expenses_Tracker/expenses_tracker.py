@@ -4,6 +4,50 @@ import requests  # Importing requests module to make HTTP requests
 from tkinter import *  # Importing all classes from tkinter module
 from tkinter import ttk  # Importing ttk class from tkinter module
 
+
+
+# def convert_currency(api_key, date_input, search_input, amount_input):
+
+#     date_input = date_input.get()
+#     search_input = search_input.get()
+#     amount_input = amount_input.get()
+
+#     # Construct the API URL with the provided parameters
+#     url = f"https://api.apilayer.com/fixer/convert?apikey={api_key}&from={date_input}&to={search_input}&amount={amount_input}"
+    
+#     # Send a GET request to the API
+#     response = requests.get(url)
+    
+#     # Check if the response status is successful (status code 200)
+#     if response.status_code == 200:
+#         # Convert the response to JSON format
+#         data = response.json()
+#         # Retrieve the converted amount from the response data
+#         converted_amount = data.get('result')
+#         # Print the converted amount with currencies
+#         print(f"{amount_input} {date_input} equals {converted_amount} {search_input}")
+#     else:
+#         # If the request fails, print an error message
+#         print("Failed to convert. Please try again later.")
+
+
+# api_key = '8juraaxZMK8Vf8AsZMKJyKZ7LF5lpmD9'  # API key
+
+
+
+
+def add_expenses(expenses_list):
+    # date = date_input.get()
+
+    while(True):
+      amount = amount_input.get()
+      expenses_list.append(amount)
+      print(expenses_list)
+      break
+
+expenses_list = []
+
+
 # Define font styles and sizes
 font_family = 'Bahnschrift'
 main_font_size = 20
@@ -73,7 +117,7 @@ search_btn.config(image=search_icon, compound=LEFT, width=60, padx=10)
 
 # Create a frame for displaying expenses with specified background color, padding, and alignment
 display_expenses_place = Frame(root, bg=colors['secondary_color'], padx=10, pady=10)
-display_expenses_place.grid(row=2, column=0, sticky='nesw', padx=10, pady=10)
+display_expenses_place.grid(row=2, column=0, sticky='nesw', padx=10, pady=(10, 0))
 display_expenses_place.columnconfigure(0, weight=1)
 
 # Create a label for displaying expenses count with specified font and colors
@@ -91,6 +135,13 @@ for i, text in enumerate(expenses_status_labels):
     status_expenses_bar.columnconfigure(i, weight=1)
     labels = Label(status_expenses_bar, text=text, font=(font_family, 12), borderwidth=2, relief='groove', padx=5, pady=5, bg=colors['btn_color'], fg=colors['font_color'])
     labels.grid(row=0, column=i, sticky='nesw')
+
+total_expenses_bar = Frame(root, bg=colors['secondary_color'], padx=10, pady=10)
+total_expenses_bar.grid(row=3, column=0, sticky='nesw', padx=10, pady=0)
+total_expenses_bar.columnconfigure(0, weight=1)
+
+total_expenses_label = Label(total_expenses_bar, text=f'Total amount in dollars: ${0}', font=(font_family, 12), borderwidth=2, relief='groove', padx=5, pady=5, bg=colors['btn_color'], fg=colors['font_color'])
+total_expenses_label.grid(row=0, column=0, sticky='nesw')
 
 # Create a frame for adding new expenses with specified background color, padding, and alignment
 add_new_expenses_place = Frame(root,  bg=colors['secondary_color'], padx=10, pady=10)
@@ -113,7 +164,6 @@ currency_optionos = ['Option 1', 'Option 2', 'Option 3', 'Option 4']
 selected_currency = StringVar()
 currency_list = ttk.Combobox(add_new_expenses_place, textvariable=selected_currency, values=currency_optionos, font=(font_family, input_font_size))
 currency_list.grid(row=4, column=0, sticky='nesw', pady=(0, 5))
-# (Continuing from the previous code)
 
 # Create labels and input fields for category, payment method, and date with specified font and colors
 cateegory_label = Label(add_new_expenses_place, text='Category', font=(font_family, 10), bg=colors['secondary_color'], fg=colors['label_color'])
@@ -136,9 +186,31 @@ date_input = ttk.Entry(add_new_expenses_place, font=(font_family, input_font_siz
 date_input.grid(row=10, column=0, sticky='nesw')
 
 # Create a button to add expenses with specified properties
-add_new_expenses_btn = Button(add_new_expenses_place, text='Add Expenses', relief='flat', bg=colors['btn_color'], fg=colors['font_color'], font=(font_family, 15))
+add_new_expenses_btn = Button(
+    add_new_expenses_place, 
+    text='Add Expenses', 
+    relief='flat', 
+    bg=colors['btn_color'], 
+    fg=colors['font_color'], 
+    font=(font_family, 15), 
+    command=lambda expenses_list=expenses_list: add_expenses(expenses_list)
+  )
 add_new_expenses_btn.grid(row=11, column=0, sticky='nesw', pady=(25, 0))
 
 # Run the Tkinter main loop
 root.mainloop()
 
+
+# add_new_expenses_btn = Button(
+#     add_new_expenses_place, 
+#     text='Add Expenses', 
+#     relief='flat', 
+#     bg=colors['btn_color'], 
+#     fg=colors['font_color'], 
+#     font=(font_family, 15), 
+#     command=lambda api_key=api_key, 
+#     date_input=date_input, 
+#     search_input=search_input, 
+#     amount_input=amount_input: 
+#     convert_currency(api_key, date_input, search_input, amount_input)
+#   )

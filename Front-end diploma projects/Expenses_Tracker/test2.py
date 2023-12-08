@@ -156,3 +156,12 @@
 # slider.pack(pady=20)
 
 # root.mainloop()
+
+
+# إنشاء الإطار
+frame4 = Frame(root)
+frame4.grid(row=0, column=0)
+
+# إنشاء ويدجت الإدخال داخل frame4
+entry_inside_frame4 = Entry(frame4)
+entry_inside_frame4.grid(row=0, column=0)
