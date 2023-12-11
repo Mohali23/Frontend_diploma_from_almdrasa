@@ -7,7 +7,7 @@ def next_player(row, col):
     global player
     if grid_btns[row][col]['text'] == "" and check_winner() == False:
         # Human player's turn
-        grid_btns[row][col]['text'] = "x"
+        grid_btns[row][col]['text'] = "X"
 
         if check_winner() == False:
             message_label.config(text=(players[1] + " turn"))  # Assuming 'o' is the computer

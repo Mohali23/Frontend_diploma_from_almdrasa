@@ -22,15 +22,15 @@ def convert_currency(from_currency, amount):
         data = response.json()
         # Retrieve the converted amount from the response data
         converted_amount = round(data.get('result'), 1)
-        # Print the converted amount with currencies
-        # total = sum(int(expenses_table.item(item, 'values')[0]) for item in expenses_table.get_children())
-        total =+ converted_amount
-
-        total_expenses_label.config(text=f'Total amount in dollars: ${total}')
-    else:
-        # If the request fails, print an error message
-        print("Failed to convert. Please try again later.")
-
+        
+        # Get the current text in the label and extract the numerical value
+        current_value = float(total_expenses_label.cget("text").split(": $")[1])
+        
+        # Add the newly converted amount to the current value
+        total_amount = round(current_value + converted_amount, 1)
+        
+        # Update the label with the total amount in dollars
+        total_expenses_label.config(text=f'Total amount in dollars: ${total_amount}')
 
 api_key = '8juraaxZMK8Vf8AsZMKJyKZ7LF5lpmD9'  # API key
 
@@ -64,11 +64,6 @@ def search_expenses():
 
   if not found:
     messagebox.showinfo("Not Found", "The search term was not found in the table.")
-
-def clear_search(event=None):  # استخدام event=None لضمان أنه يمكن استدعاء الدالة بشكل مستقل أيضًا
-    search_input.delete(0, END)  # مسح حقل البحث
-    for row in expenses_table.get_children():
-        expenses_table.reattach(row, '', len(expenses_table.get_children()))  # إعادة عرض الصف
 
 def reset_inputs():
   amount_input.delete(0, 'end')
@@ -139,7 +134,6 @@ search_input_place.columnconfigure(1, weight=1)
 # Create a ttk Entry widget for search input with specified font
 search_input = ttk.Entry(search_input_place, font=(font_family, main_font_size))
 search_input.grid(row=0, column=0, sticky='nesw')
-search_input.bind("<FocusOut>", clear_search)
 
 
 # Create a search button with specified properties
@@ -152,6 +146,7 @@ search_btn.config(image=search_icon, compound=LEFT, width=60, padx=10)
 display_expenses_place = Frame(root, bg=colors['secondary_color'], padx=10, pady=10)
 display_expenses_place.grid(row=2, column=0, sticky='nesw', padx=10, pady=(10, 0))
 display_expenses_place.columnconfigure(0, weight=1)
+display_expenses_place.rowconfigure(1, weight=1)
 
 # Create a label for displaying expenses count with specified font and colors
 display_expenses_label = Label(display_expenses_place, text=f'All your expenses', font=(font_family, 12), bg=colors['secondary_color'], fg=colors['label_color'])
@@ -203,7 +198,7 @@ amount_input.grid(row=2, column=0, sticky='nesw', pady=(0, 5))
 
 currency_label = Label(add_new_expenses_place, text='Currency', font=(font_family, 10), bg=colors['secondary_color'], fg=colors['label_color'])
 currency_label.grid(row=3, column=0, sticky='nw', pady=(10, 0))
-currency_optionos = ['EGP', 'USD', 'GBP', 'EUR']
+currency_optionos = ['EGP', 'GBP', 'EUR']
 selected_currency = StringVar()
 currency_list = ttk.Combobox(add_new_expenses_place, textvariable=selected_currency, values=currency_optionos, font=(font_family, input_font_size))
 currency_list.grid(row=4, column=0, sticky='nesw', pady=(0, 5))
@@ -243,46 +238,3 @@ add_new_expenses_btn.grid(row=11, column=0, sticky='nesw', pady=(25, 0))
 # Run the Tkinter main loop
 root.mainloop()
 
-
-# add_new_expenses_btn = Button(
-#     add_new_expenses_place, 
-#     text='Add Expenses', 
-#     relief='flat', 
-#     bg=colors['btn_color'], 
-#     fg=colors['font_color'], 
-#     font=(font_family, 15), 
-#     command=lambda api_key=api_key, 
-#     date_input=date_input, 
-#     search_input=search_input, 
-#     amount_input=amount_input: 
-#     convert_currency(api_key, date_input, search_input, amount_input)
-#   )
-
-# # Create a frame for status bar with expense labels and their properties
-# status_expenses_bar = Frame(display_expenses_place)
-# status_expenses_bar.grid(row=1, column=0, sticky='nesw', padx=0, pady=(10, 0))
-
-# expenses_status_labels  = ['Amount', 'Currency', 'Cateegory', 'Payment Method', 'Date']
-
-# # Loop through the expense status labels and create corresponding labels with specified properties
-# for i, text in enumerate(expenses_status_labels):
-#     status_expenses_bar.columnconfigure(i, weight=1)
-#     labels = Label(status_expenses_bar, text=text, font=(font_family, 12), borderwidth=2, relief='groove', padx=5, pady=5, bg=colors['btn_color'], fg=colors['font_color'])
-#     labels.grid(row=0, column=i, sticky='nesw')
-
-
-# #****
-
-# # Create a frame for status bar with expense labels and their properties
-# expenses_item = Frame(display_expenses_place)
-# expenses_item.grid(row=2, column=0, sticky='nesw')
-
-# expenses_status_item  = ['300', 'EGP', 'Rant', 'CashCashCashCashCashCashCashs', '10-12-2023']
-
-# # Loop through the expense status labels and create corresponding labels with specified properties
-# for i, text in enumerate(expenses_status_item):
-#     expenses_item.columnconfigure(i, weight=1)
-#     labels = Label(expenses_item, text=text, font=(font_family, 12), borderwidth=2, relief='groove', padx=5, pady=5, bg='#fff', fg=colors['label_color'])
-#     labels.grid(row=0, column=i, sticky='nesw')
-
-# #***
