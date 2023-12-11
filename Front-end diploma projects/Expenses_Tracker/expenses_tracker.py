@@ -35,41 +35,62 @@ def convert_currency(from_currency, amount):
 api_key = '8juraaxZMK8Vf8AsZMKJyKZ7LF5lpmD9'  # API key
 
 
-
 def add_expenses():
+  # Extract values from input fields
   amount = amount_input.get()
   currency = currency_list.get()
   category = category_list.get()
   payment_method = payment_method_list.get()
   date = date_input.get()
 
+  # Create a list to store the new expenses
   expenses_list = [amount, currency, category, payment_method, date]
-  expenses_table.insert(parent='', index='end', text='', values=expenses_list)
 
-  reset_inputs()
-  convert_currency(currency, amount)
+  if amount == '' or currency =='' or category == '' or payment_method == '' or date == '':
+    # Show an error message if any field is empty
+    messagebox.showerror('Erorr', 'Please fill out all fields')
+  else:
+    # Insert the new expenses into the expenses table
+    expenses_table.insert(parent='', index='end', text='', values=expenses_list)
+
+    # Reset the fields after addition 
+    reset_inputs()
+    # Convert currency and display it accordingly
+    convert_currency(currency, amount)
+
 
 def search_expenses():
-  search_text = search_input.get().lower()
-  found = False
-  for row in expenses_table.get_children():
-    values = expenses_table.item(row, 'values')
-    if search_text in [str(value).lower() for value in values]:
-      expenses_table.selection_set(row)
-      expenses_table.focus(row)
-      expenses_table.selection()
-      found = True
+    # Get the entered text for searching
+    search_text = search_input.get().lower()
+    found_rows = []
+    # Search within the expenses table
+    for row in expenses_table.get_children():
+        values = expenses_table.item(row, 'values')
+        # Check for text match in rows and select the matching item
+        if search_text in [str(value).lower() for value in values]:
+            found_rows.append(row)
+    
+    # Clear current selection
+    expenses_table.selection_remove(*expenses_table.get_children())
+    
+    if found_rows:
+        for row in found_rows:
+            expenses_table.selection_add(row)
+            expenses_table.focus(row)
     else:
-      expenses_table.selection_remove(row)
+        messagebox.showinfo("Not Found", "The search term was not found in the table.")
 
-  if not found:
-    messagebox.showinfo("Not Found", "The search term was not found in the table.")
 
 def reset_inputs():
+  # Clear the content of the 'amount_input' field
   amount_input.delete(0, 'end')
+  # Reset the selected value in the 'currency_list' dropdown to empty
   currency_list.set('')
+  # Reset the selected value in the 'category_list' dropdown to empty
   category_list.set('')
+  # Reset the selected value in the 'payment_method_list' dropdown to empty
   payment_method_list.set('')
+  # Clear the content of the 'date_input' field
   date_input.delete(0, 'end')
 
 
@@ -152,34 +173,45 @@ display_expenses_place.rowconfigure(1, weight=1)
 display_expenses_label = Label(display_expenses_place, text=f'All your expenses', font=(font_family, 12), bg=colors['secondary_color'], fg=colors['label_color'])
 display_expenses_label.grid(row=0, column=0, sticky='nw')
 
+# List of columns for the expenses table
+expenses_table = ('Amount', 'Currency', 'Category', 'Payment Method', 'Date')
 
-##########
-
-expenses_table = ('Amount', 'Currency', 'Cateegory', 'Payment Method', 'Date')
+# Configure the style for the headings in the Treeview
 style.configure("Treeview.Heading", font=(font_family, 11), background=colors['btn_color'], foreground=colors['font_color'], relief='falt')
+
+# Map the background color for active headings in the Treeview
 style.map("Treeview.Heading", background=[('active', colors['btn_color'])])
+
+# Configure the general style for the Treeview
 style.configure("Treeview", font=(font_family, 11))
 
+# Create a Treeview widget for displaying expenses
 expenses_table = ttk.Treeview(display_expenses_place, columns=(expenses_table))
 expenses_table.grid(row=1, column=0, sticky='nesw', padx=0, pady=(10, 0))
 
-
+# Hide the first column ('#0') in the expenses_table
 expenses_table.column('#0', width=0, stretch=NO)
 expenses_table.heading('#0', text='', anchor='nw')
+
+# Loop through each column in expenses_table's 'columns'
 for col in expenses_table['columns']:
-  expenses_table.column(col, anchor='nw', width=100)
-  expenses_table.heading(col, text=col, anchor='nw')
+    # Set column configurations: anchor, width
+    expenses_table.column(col, anchor='nw', width=100)
+    # Set heading configurations: text, anchor
+    expenses_table.heading(col, text=col, anchor='nw')
 
 
-##########
-
+# Create a frame for displaying the total expenses bar
 total_expenses_bar = Frame(display_expenses_place, bg=colors['secondary_color'])
 total_expenses_bar.grid(row=2, column=0, sticky='nesw')
+
+# Configure the first column of total_expenses_bar to expand proportionally
 total_expenses_bar.columnconfigure(0, weight=1)
 
-
+# Create a label for displaying the total amount of expenses in dollars
 total_expenses_label = Label(total_expenses_bar, text=f'Total amount in dollars: ${0}', font=(font_family, 12), anchor='nw', borderwidth=2, relief='groove', padx=5, pady=5, bg=colors['btn_color'], fg=colors['font_color'])
 total_expenses_label.grid(row=0, column=0, sticky='nesw')
+
 
 # Create a frame for adding new expenses with specified background color, padding, and alignment
 add_new_expenses_place = Frame(root,  bg=colors['secondary_color'], padx=10, pady=10)
@@ -191,35 +223,62 @@ add_expenses_label = Label(add_new_expenses_place, text='Add a new expenses', fo
 add_expenses_label.grid(row=0, column=0, sticky='nw')
 
 # Create labels and input fields for different expense details with specified font and colors
+# Create a label for 'Amount'
 amount_label = Label(add_new_expenses_place, text='Amount', font=(font_family, 10), bg=colors['secondary_color'], fg=colors['label_color'])
 amount_label.grid(row=1, column=0, sticky='nw', pady=(10, 0))
+
+# Create an entry field for entering the amount
 amount_input = ttk.Entry(add_new_expenses_place, font=(font_family, input_font_size))
 amount_input.grid(row=2, column=0, sticky='nesw', pady=(0, 5))
 
+# Create a label for 'Currency'
 currency_label = Label(add_new_expenses_place, text='Currency', font=(font_family, 10), bg=colors['secondary_color'], fg=colors['label_color'])
 currency_label.grid(row=3, column=0, sticky='nw', pady=(10, 0))
-currency_optionos = ['EGP', 'GBP', 'EUR']
+
+# List of currency options
+currency_options = ['EGP', 'GBP', 'EUR']
+
+# Define a variable to store the selected currency
 selected_currency = StringVar()
-currency_list = ttk.Combobox(add_new_expenses_place, textvariable=selected_currency, values=currency_optionos, font=(font_family, input_font_size))
+
+# Create a combobox for selecting the currency
+currency_list = ttk.Combobox(add_new_expenses_place, textvariable=selected_currency, values=currency_options, font=(font_family, input_font_size))
 currency_list.grid(row=4, column=0, sticky='nesw', pady=(0, 5))
 
 # Create labels and input fields for category, payment method, and date with specified font and colors
-cateegory_label = Label(add_new_expenses_place, text='Category', font=(font_family, 10), bg=colors['secondary_color'], fg=colors['label_color'])
-cateegory_label.grid(row=5, column=0, sticky='nw', pady=(10, 0))
-cateegory_optionos = ['Food', 'Rent', 'Transportation', 'Utilities', 'Entertainment']
+# Create a label for 'Category'
+category_label = Label(add_new_expenses_place, text='Category', font=(font_family, 10), bg=colors['secondary_color'], fg=colors['label_color'])
+category_label.grid(row=5, column=0, sticky='nw', pady=(10, 0))
+
+# List of category options
+category_options = ['Life expenses', 'Electricity', 'Gas', 'Rental', 'Grocery', 'Savings', 'Education', 'Charity']
+
+# Define a variable to store the selected category
 selected_category = StringVar()
-category_list = ttk.Combobox(add_new_expenses_place, textvariable=selected_category, values=cateegory_optionos, font=(font_family, input_font_size))
+
+# Create a combobox for selecting the category
+category_list = ttk.Combobox(add_new_expenses_place, textvariable=selected_category, values=category_options, font=(font_family, input_font_size))
 category_list.grid(row=6, column=0, sticky='nesw', pady=(0, 5))
 
+# Create a label for 'Payment Method'
 payment_method_label = Label(add_new_expenses_place, text='Payment Method', font=(font_family, 10), bg=colors['secondary_color'], fg=colors['label_color'])
 payment_method_label.grid(row=7, column=0, sticky='nw', pady=(10, 0))
-payment_method_options = ['Cash', 'Credit Card', 'Debit Card', 'Bank Transfer', 'PayPal']
+
+# List of payment method options
+payment_method_options = ['Cash', 'Credit Card', 'PayPal']
+
+# Define a variable to store the selected payment method
 selected_payment_method = StringVar()
+
+# Create a combobox for selecting the payment method
 payment_method_list = ttk.Combobox(add_new_expenses_place, textvariable=selected_payment_method, values=payment_method_options, font=(font_family, input_font_size))
 payment_method_list.grid(row=8, column=0, sticky='nesw', pady=(0, 5))
 
+# Create a label for 'Date'
 date_label = Label(add_new_expenses_place, text='Date', font=(font_family, 10), bg=colors['secondary_color'], fg=colors['label_color'])
 date_label.grid(row=9, column=0, sticky='nw', pady=(10, 0))
+
+# Create an entry field for entering the date
 date_input = ttk.Entry(add_new_expenses_place, font=(font_family, input_font_size))
 date_input.grid(row=10, column=0, sticky='nesw')
 
