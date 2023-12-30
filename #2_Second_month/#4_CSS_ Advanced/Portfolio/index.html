@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Raleway:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Mohamed Ali</title>
+  </head>
+  <body>
+    <!-- Start Video Background -->
+    <div class="video__container">
+      <video class="video-loop" autoplay loop muted>
+        <source src="./videos/video-loop.mp4" type="video/mp4" />
+      </video>
+      <!-- Start Header Section -->
+      <header class="header">
+        <div class="container">
+          <div class="flex">
+            <label for="menu" class="burger-menu">
+              <div class="burger-menu__bar"></div>
+              <div class="burger-menu__bar"></div>
+              <div class="burger-menu__bar"></div>
+            </label>
+            <input id="menu" class="burger-menu__checkbox" type="checkbox" />
+            <nav class="navigation">
+              <ul class="navigation__list">
+                <li>
+                  <a href="#bio" class="navigation__link navigation__bio"
+                    >Bio</a
+                  >
+                </li>
+                <li>
+                  <a href="#skills" class="navigation__link navigation__skills"
+                    >Skills</a
+                  >
+                </li>
+                <li>
+                  <a href="#media" class="navigation__link navigation__media"
+                    >Media</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#projects"
+                    class="navigation__link navigation__projects"
+                    >Projects</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#clients"
+                    class="navigation__link navigation__clients"
+                    >My Clients</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    class="navigation__link navigation__contact"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </nav>
+            <div class="toggle">
+              <h3 class="toggle__title">Switch Theme</h3>
+              <input
+                type="checkbox"
+                name="toggle checkbox"
+                id="toggle"
+                class="toggle__checkbox"
+              />
+              <label for="toggle" class="toggle__label"></label>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- End Header Section -->
+
+      <!-- Start Bio Section -->
+      <section id="bio" class="bio padding_top_bottom">
+        <div class="container">
+          <div class="bio__brief">
+            <div class="bio__description">
+              <h1 class="bio__heading">
+                Hi There, I’M A Passionate Software Engineer
+              </h1>
+              <p class="bio__test">
+                My name is <span class="bio__name">Mohamed Ali</span>, I'm a
+                Software Engineer at
+                <a class="bio__almdrasa" href="https://www.almdrasa.com/"
+                  >Almdrasa.com</a
+                >, and a content creator who publish content on
+                <a
+                  class="bio__facebook"
+                  href="https://www.facebook.com/m.abusrea"
+                  >Facebook</a
+                >,
+                <a
+                  class="bio__twitter"
+                  href="https://twitter.com/mohamed_abusrea"
+                  >Twitter</a
+                >,
+                <a
+                  class="bio__linkedin"
+                  href="https://www.linkedin.com/in/mohamedabusrea/"
+                  >LinkedIn</a
+                >
+                and
+                <a
+                  class="bio__youtube"
+                  href="https://www.youtube.com/@MohamedAbusrea"
+                  >Youtube</a
+                >.
+              </p>
+              <div class="bio__links">
+                <a href="#contact" class="bio__links-say-hi">Say Hi</a>
+                <a
+                  href="./assets/mohamedAbusreaResume.pdf"
+                  class="bio__links-download-link"
+                  target="_blank"
+                >
+                  Download CV
+                  <span class="bio__arrow">↓</span>
+                </a>
+              </div>
+            </div>
+            <div class="bio__image">
+              <img
+                class="bio__pic"
+                src="./images/personal-pic.png"
+                alt="personal pic of Mohamed Abusrea"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Bio Section -->
+
+      <!-- Start Skills Section -->
+      <section id="skills" class="skills section_bg padding_top_bottom">
+        <div class="container">
+          <h2 class="section_title margin_bottom">Skills</h2>
+          <ul class="skills__list grid">
+            <li class="skills__item">
+              <h2 class="skills__title">Html</h2>
+              <span class="skills__years">8 Years</span>
+            </li>
+            <li class="skills__item">
+              <h2 class="skills__title">Css</h2>
+              <span class="skills__years">8 Years</span>
+            </li>
+            <li class="skills__item">
+              <h2 class="skills__title">Javascript</h2>
+              <span class="skills__years">8 Years</span>
+            </li>
+            <li class="skills__item">
+              <h2 class="skills__title">React</h2>
+              <span class="skills__years">4 Years</span>
+            </li>
+            <li class="skills__item">
+              <h2 class="skills__title">Redux</h2>
+              <span class="skills__years">3 Years</span>
+            </li>
+            <li class="skills__item">
+              <h2 class="skills__title">React testing library</h2>
+              <span class="skills__years">1 Years</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- End Skills Section -->
+
+      <!-- Start Media Section -->
+      <section id="media" class="media padding_top_bottom">
+        <div class="container">
+          <video class="media__video" controls poster="./images/thumbnail.jpg">
+            <source src="./videos/video.mp4" />
+          </video>
+        </div>
+      </section>
+      <!-- End  Media Section -->
+
+      <!-- Start Projects Section -->
+      <div class="container">
+        <div id="projects" class="padding_top_bottom">
+          <h2 class="section_title margin_bottom">
+            My Featured <br />
+            Projects
+          </h2>
+          <section class="projects">
+            <!-- Start First Project -->
+            <div class="projects__image">
+              <img
+                class="project_img"
+                src="images/project-1.jpg"
+                alt="Quran Tab Extension"
+              />
+            </div>
+            <div class="projects__description">
+              <h3 class="projects__title">
+                Quran Tab <br />
+                Extension
+              </h3>
+              <div class="projects__text">
+                Quran Tab is an Islamic new tab page that will keep you inspired
+                by a verse from the Quran every time you open a new tab that
+                helps you achieve your "Khatma" and keeps you connected with the
+                words of Allah.
+              </div>
+              <a
+                class="projects__link"
+                href="https://bit.ly/qt-chrome"
+                target="_blank"
+                >Chrome Link</a
+              >
+              <a
+                class="projects__link"
+                href="https://bit.ly/qt-edge"
+                target="_blank"
+                >Edge Link</a
+              >
+            </div>
+            <!-- End First Project -->
+
+            <!-- Start Second Project -->
+            <div class="projects__description">
+              <h3 class="projects__title">
+                Quran Station <br />
+                Extension
+              </h3>
+              <div class="projects__text">
+                Small extension that gives you access to over 100 stations to
+                help you listen to the Quran from your favorite reciters easily
+                Quran-Station has over 100 stations to help you listen to the
+                Quran from your favorite reciters in a quick and easy way.
+              </div>
+              <a
+                class="projects__link"
+                href="https://bit.ly/qs-chrome"
+                target="_blank"
+                >Chrome Link</a
+              >
+              <a
+                class="projects__link"
+                href="https://bit.ly/qs-firefox"
+                target="_blank"
+                >Firefox Link</a
+              >
+              <a
+                class="projects__link"
+                href="https://bit.ly/quran-station-edge"
+                target="_blank"
+                >Edge Link</a
+              >
+            </div>
+            <div class="projects__image">
+              <img
+                class="project_img"
+                src="images/project-2.jpg"
+                alt="Quran Tab Extension"
+              />
+            </div>
+            <!-- End Second Project -->
+          </section>
+        </div>
+      </div>
+      <!-- End Projects Section -->
+
+      <!-- Start Clients Section -->
+      <section id="clients" class="clients section_bg padding_top_bottom">
+        <div class="container">
+          <h2 class="section_title margin_bottom">
+            What My <br />
+            Clients Says.
+          </h2>
+          <div class="clients__opinions flex">
+            <p class="clients__opinion">
+              Abusrea has the advantageous ability to understand a problem and
+              implement code to a high standard within the deadline. Each
+              project we have worked on, I know I can completely trust Abusrea
+              to own his tasks and complete what is needed when asked of him.
+            </p>
+            <p class="clients__opinion">
+              Mohamed will patiently listen to you and give you his own Ideas as
+              well, and in the end, he comes up with something completely
+              different from what you’re expecting, but the good news is, you’ll
+              always love it.
+            </p>
+            <p class="clients__opinion">
+              I had a chance to work closely with Mohamed as a direct manager
+              from hist first day at DeliveryHero until my last day there
+              (6+months). Mohamed's biggest strengths that I admire are taking
+              initiatives on personal and team level, and driving them.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- End Clients Section -->
+
+      <!-- Start Contact Section -->
+      <div class="container">
+        <section id="contact" class="contact padding_top_bottom">
+          <div class="contact__description">
+            <p class="contact__text">
+              Feel free to reach out to me any time. I prefer to talk over
+              email, especially since we may be a few time zones away.
+            </p>
+            <a href="mailto:example@gmail.com" class="contact__email"
+              >example@gmail.com</a
+            >
+            <div class="contact__social-media">
+              <a class="contact__social-link" href="#">
+                <img src="./images/brand/facebook.svg" alt="facebook" />
+              </a>
+              <a class="contact__social-link" href="#">
+                <img src="./images/brand/twitter.svg" alt="twitter" />
+              </a>
+              <a class="contact__social-link" href="#">
+                <img src="./images/brand/youtube.svg" alt="youtube" />
+              </a>
+              <a class="contact__social-link" href="#">
+                <img src="./images/brand/github.svg" alt="github" />
+              </a>
+              <a class="contact__social-link" href="#">
+                <img src="./images/brand/instagram.svg" alt="instagram.svg" />
+              </a>
+              <a class="contact__social-link" href="#">
+                <img src="./images/brand/LinkedIn.svg" alt="LinkedIn.svg" />
+              </a>
+            </div>
+          </div>
+          <div class="contact__form">
+            <h2 class="section_title margin_bottom">
+              Let’s Work <br />
+              Together!
+            </h2>
+            <form action="results.html">
+              <div class="contact__inputs flex">
+                <input
+                  type="text"
+                  class="contact__input"
+                  name="name"
+                  placeholder="Full Name"
+                  required
+                />
+                <input
+                  type="tel"
+                  class="contact__input"
+                  placeholder="Phone No."
+                  name="tel"
+                  required
+                  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                />
+              </div>
+              <textarea
+                class="contact__input contact__textarea"
+                name="message"
+                placeholder="Your Message"
+                rows="1"
+                required
+              ></textarea>
+              <input
+                type="submit"
+                class="contact__button"
+                value="Send Message"
+              />
+            </form>
+          </div>
+        </section>
+      </div>
+      <!-- End Contact Section -->
+
+      <!-- Start Footer -->
+      <div class="container">
+        <footer>© 2023 by Mohamed Ali</footer>
+      </div>
+      <!-- End Footer -->
+    </div>
+    <!-- End Video Background -->
+  </body>
+</html>

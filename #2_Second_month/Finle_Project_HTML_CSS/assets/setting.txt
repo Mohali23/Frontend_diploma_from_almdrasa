@@ -1,0 +1,14 @@
+ Heading Color: #0B132A;
+Paragraph Color : #4F5665;
+Main Color : #F53838;
+Shadow Color:#0D1025
+Section Color: #F8F8F8;
+
+
+
+
+Font Family: Rubik
+
+Main Heading size : 50px
+Section font size : 35px
+pricing size : 14px

@@ -1,0 +1,53 @@
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+@mixin grid($columns, $columns-width, $justify, $align) {
+  display: grid;
+  grid-template-columns: repeat($columns, $columns-width);
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin flex($dir, $justify, $align) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.primary-btn {
+  width: 15.625rem;
+  height: 3.75rem;
+  line-height: 3.75rem;
+  text-align: center;
+  border-radius: 0.625rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-weight: var(--font-weight-medium);
+  box-shadow: 0 30px 55px rgba(245, 56, 56, 0.35);
+}
+
+.secondry-btn {
+  width: 9.375rem;
+  height: 2.8125rem;
+  line-height: 2.8125rem;
+  text-align: center;
+  border: 1px solid var(--color-primary);
+  border-radius: 2.8125rem;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.section-padding {
+  padding: var(--padding-tb) 0;
+}
+
+.section-title {
+  font-size: var(--font-size-35);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--heading-line-height);
+  color: var(--color-heading);
+  margin-bottom: 1.25rem;
+}
