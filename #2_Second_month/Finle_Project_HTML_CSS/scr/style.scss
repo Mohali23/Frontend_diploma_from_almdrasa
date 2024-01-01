@@ -28,6 +28,7 @@
   padding: 3.57rem 0;
   .bio__wrapper {
     @include grid(2, 1fr, space-between, center);
+    gap: 5rem;
     .bio__heading {
       font-size: var(--font-size-50);
       font-weight: var(--font-weight-medium);
@@ -140,13 +141,6 @@
 // Start Pricing Section
 .pricing {
   background-color: var(--color-background);
-  .pricing__header {
-    max-width: 50%;
-    margin: 0 auto;
-    text-align: center;
-    line-height: var(--text-line-height);
-    margin-bottom: var(--margin-bottom);
-  }
   .pricing__wrapper {
     @include grid(3, 1fr, space-between, 0);
     gap: 3rem;
@@ -156,20 +150,21 @@
       border-radius: var(--border-radius);
       background-color: var(--color-white);
       padding: 3.625rem 1.875rem;
+      transition: var(--transition-timing);
+      &:last-child,
+      &:hover {
+        border: 2px solid var(--color-primary);
+      }
+
       .pricing__plan-img {
         margin: 1.875rem 0;
-        .pricing__plan-heading {
-          margin: 1.875rem 0;
-          text-align: center;
-          font-size: var(--font-size-18);
-          font-weight: var(--font-weight-medium);
-          color: var(--color-heading);
-        }
       }
       .pricing__plan-list {
         min-height: 320px;
         .pricing__item-list {
-          margin-bottom: var(--margin-bottom);
+          &:not(:last-child) {
+            margin-bottom: var(--margin-bottom);
+          }
           position: relative;
           &::before {
             content: "\f26b";
@@ -182,7 +177,125 @@
           }
         }
       }
+      .pricing__plan-footer {
+        margin-top: 1.25rem;
+        .pricing__amount-plan {
+          font-size: var(--font-size-25);
+          font-weight: var(--font-weight-regular);
+          color: var(--color-text);
+          margin-bottom: 1.25rem;
+          text-align: center;
+          span {
+            color: var(--color-heading);
+          }
+        }
+        .pricing__btn {
+          background-color: var(--color-primary);
+          color: var(--color-white);
+          box-shadow: var(--btn-shadow);
+        }
+      }
     }
   }
 }
 // End Pricing Section
+
+// Start Global Network Section
+.global-network {
+  .section-header {
+    span {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+  .global-network__wrapper {
+    margin-top: 5.5rem;
+    @include grid(1, 1fr, space-between, center);
+    img {
+      width: 100%;
+    }
+  }
+}
+// End Global Network
+
+// Start Footer Section
+.footer {
+  background-color: var(--color-background);
+  .footer__subscribe {
+    @include grid(2, 1fr, space-between, center);
+    max-width: 100%;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: 0px 2px 29px rgba(0, 0, 0, 0.04);
+    padding: 3.66rem;
+    margin-top: -13.75rem;
+    .footer__subscribe-description {
+      .section-title {
+        max-width: 69%;
+        margin-bottom: 0.625rem;
+      }
+    }
+    .footer__subscribe-btn {
+      @include flex(row, end, center);
+    }
+  }
+  .footer__wrapper {
+    display: grid;
+    grid-template-columns: 40% repeat(3, 20%);
+    justify-content: space-around;
+    padding-top: 3.125rem;
+    .footer__content {
+      .footer__content-logo {
+        margin-bottom: 1.25rem;
+      }
+      .footer__content-description {
+        margin-bottom: 2.25rem;
+        p {
+          line-height: var(--text-line-height);
+          span {
+            font-weight: bold;
+          }
+        }
+      }
+      .footer__social-media {
+        margin-bottom: 2.25rem;
+        a {
+          display: inline-block;
+          width: 2.1rem;
+          height: 2.1rem;
+          line-height: 2.1rem;
+          text-align: center;
+          background-color: var(--color-white);
+          color: var(--color-primary);
+          border-radius: 50%;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+          margin-inline-end: 1.25rem;
+          transition: var(--transition-timing);
+          &:hover {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+          }
+        }
+      }
+      .footer__copyright {
+        color: #afb5c0;
+        span {
+          font-weight: var(--font-weight-bold);
+        }
+      }
+    }
+    .footer__links {
+      @include flex(column, normal, last baseline);
+      .small-heading {
+        margin: 0 0 1.875rem;
+      }
+      .footer__links-list {
+        li {
+          &:not(:last-child) {
+            margin-bottom: 1.25rem;
+          }
+        }
+      }
+    }
+  }
+}
+// End Footer Section

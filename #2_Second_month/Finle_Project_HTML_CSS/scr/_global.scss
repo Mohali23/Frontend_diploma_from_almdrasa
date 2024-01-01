@@ -17,27 +17,45 @@
   align-items: $align;
 }
 
-.primary-btn {
-  width: 15.625rem;
-  height: 3.75rem;
-  line-height: 3.75rem;
+@mixin btn($width, $height, $radius, $bg-color, $color, $shadow) {
+  width: $width;
+  height: $height;
+  line-height: $height;
   text-align: center;
-  border-radius: 0.625rem;
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  border-radius: $radius;
+  background-color: $bg-color;
+  color: $color;
   font-weight: var(--font-weight-medium);
-  box-shadow: 0 30px 55px rgba(245, 56, 56, 0.35);
+  box-shadow: $shadow;
+  transition: var(--transition-timing);
+}
+
+.primary-btn {
+  @include btn(
+    15.625rem,
+    3.75rem,
+    0.625rem,
+    var(--color-primary),
+    var(--color-white),
+    var(--btn-shadow)
+  );
 }
 
 .secondry-btn {
-  width: 9.375rem;
-  height: 2.8125rem;
-  line-height: 2.8125rem;
-  text-align: center;
+  @include btn(
+    9.375rem,
+    2.8125rem,
+    2.8125rem,
+    transparent,
+    var(--color-primary),
+    0
+  );
   border: 1px solid var(--color-primary);
-  border-radius: 2.8125rem;
-  color: var(--color-primary);
-  font-weight: var(--font-weight-medium);
+  &:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: var(--btn-shadow);
+  }
 }
 
 .section-padding {
@@ -50,4 +68,20 @@
   line-height: var(--heading-line-height);
   color: var(--color-heading);
   margin-bottom: 1.25rem;
+}
+
+.section-header {
+  max-width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  line-height: var(--text-line-height);
+  margin-bottom: var(--margin-bottom);
+}
+
+.small-heading {
+  margin: 1.875rem 0;
+  text-align: center;
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-heading);
 }

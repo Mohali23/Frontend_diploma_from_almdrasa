@@ -8,7 +8,7 @@
   --color-background: #f8f8f8;
   --color-green: #2fab73;
   --color-border: #dddddd;
-  --color-shadow: #0d1025;
+  --color-shadow: rgba(0, 0, 0, 0.04);
   --color-dark-theme-bg: #000;
   --color-dark-theme-text: var(#f7f7f7);
   --color-dark-theme-section: #445069;
@@ -31,4 +31,5 @@
   --padding-tb: 5.5rem;
   --margin-tb: 3.75rem;
   --margin-bottom: 2.25rem;
+  --btn-shadow: 0 20px 55px rgba(245, 56, 56, 0.35);
 }
