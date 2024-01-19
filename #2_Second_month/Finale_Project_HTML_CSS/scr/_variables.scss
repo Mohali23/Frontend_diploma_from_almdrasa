@@ -1,0 +1,37 @@
+:root {
+  --container-width: 75rem;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-primary: #f53838;
+  --color-heading: #0b132a;
+  --color-text: #4f5665;
+  --color-background: #f8f8f8;
+  --color-green: #2fab73;
+  --color-border: #dddddd;
+  --color-shadow: rgba(0, 0, 0, 0.04);
+  --color-dark-theme-bg: #000;
+  --color-dark-theme-text: var(#f7f7f7);
+  --color-dark-theme-section: #445069;
+  --font-family-rubik: "Rubik", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-size-14: 0.875rem;
+  --font-size-16: 1rem;
+  --font-size-18: 1.125rem;
+  --font-size-20: 1.25rem;
+  --font-size-25: 1.5625rem;
+  --font-size-35: 2.1875rem;
+  --font-size-40: 2.5rem;
+  --font-size-50: 3.125rem;
+  --text-line-height: 1.875rem;
+  --heading-line-height: 3.125rem;
+  --border-radius: 0.625rem;
+  --transition-timing: 0.3s;
+  --padding-tb: 5.5rem;
+  --padding-tb-50: 3.125rem;
+  --margin-tb: 3.75rem;
+  --margin-bottom: 2.25rem;
+  --btn-shadow: 0 20px 55px rgba(245, 56, 56, 0.35);
+}

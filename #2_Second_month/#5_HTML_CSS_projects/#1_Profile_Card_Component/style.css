@@ -63,7 +63,6 @@ body {
 
 .card {
   min-width: 35rem;
-  border: 1px solid #000;
   border-radius: 1rem;
   overflow: hidden;
   background-color: var(--color-white);
@@ -87,6 +86,7 @@ body {
   margin-top: 0px;
   text-align: center;
   margin-top: -6rem;
+  position: relative;
   z-index: 1;
 }
 

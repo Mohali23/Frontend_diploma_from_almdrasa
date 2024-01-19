@@ -129,6 +129,7 @@ body {
   border-bottom: 0.1rem solid var(--color-input-border);
   position: sticky;
   top: 0;
+  z-index: 2;
 }
 
 .navigation__list {
@@ -233,6 +234,24 @@ body {
   font-size: var(--font-size-20);
   font-weight: var(--font-weight-regular);
   margin: 3rem 0 8rem;
+}
+
+.bio__image {
+  display: flex;
+  position: relative;
+  align-items: flex-end;
+  justify-self: end;
+}
+
+.bio__image::before {
+  content: "";
+  position: absolute;
+  background-color: var(--color-box-img);
+  width: 100%;
+  height: 46rem;
+  z-index: -1;
+  border-radius: 1.8rem;
+  box-shadow: 2.17543px 8.7017px 38.0699px rgba(0, 0, 0, 0.15);
 }
 
 .bio__name {
@@ -560,7 +579,6 @@ html:has(.toggle__checkbox:checked) {
 
   .header {
     padding: 0;
-    z-index: 0;
   }
 
   .navigation {
@@ -570,6 +588,7 @@ html:has(.toggle__checkbox:checked) {
     padding: 3rem 0;
     width: 100%;
     top: 0;
+    left: 0;
     border-bottom: 0.1rem solid var(--color-text);
     z-index: -1;
     width: 100vw;
